@@ -2,6 +2,7 @@ pub(crate) mod attachment;
 pub(crate) mod card;
 #[allow(clippy::module_inception)]
 pub(crate) mod cipher;
+pub(crate) mod cipher_permissions;
 pub(crate) mod field;
 pub(crate) mod identity;
 pub(crate) mod linked_id;
@@ -15,6 +16,7 @@ pub use attachment::{
 };
 pub use card::{CardBrand, CardView};
 pub use cipher::{Cipher, CipherError, CipherListView, CipherRepromptType, CipherType, CipherView};
+pub use cipher_permissions::CipherPermissions;
 pub use field::FieldView;
 pub use identity::IdentityView;
 pub use login::{

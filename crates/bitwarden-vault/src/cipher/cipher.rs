@@ -734,7 +734,7 @@ mod tests {
     use ssh_key::SshKey;
 
     use super::*;
-    use crate::Fido2Credential;
+    use crate::{login::Fido2CredentialListView, Fido2Credential};
 
     fn generate_cipher() -> CipherView {
         let test_id: uuid::Uuid = "fd411a1a-fec8-4070-985d-0e6560860e69".parse().unwrap();
@@ -852,7 +852,15 @@ mod tests {
                 name: "My test login".to_string(),
                 subtitle: "test_username".to_string(),
                 r#type: CipherListViewType::Login(LoginListView {
+                    fido2_credentials: Some(vec![Fido2CredentialListView {
+                        credential_id: "123".to_string(),
+                        rp_id: "123".to_string(),
+                        user_handle: None,
+                        user_name: None,
+                        user_display_name: None,
+                    }]),
                     has_fido2: true,
+                    username: Some("test_username".to_string()),
                     totp: cipher.login.as_ref().unwrap().totp.clone(),
                     uris: None,
                 }),

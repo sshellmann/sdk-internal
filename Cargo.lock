@@ -532,6 +532,7 @@ version = "1.0.0"
 dependencies = [
  "bitwarden-core",
  "bitwarden-crypto",
+ "bitwarden-error",
  "rand",
  "rand_chacha",
  "reqwest",
@@ -540,7 +541,9 @@ dependencies = [
  "serde_json",
  "thiserror 2.0.12",
  "tokio",
+ "tsify-next",
  "uniffi",
+ "wasm-bindgen",
  "wiremock",
 ]
 
@@ -679,6 +682,7 @@ dependencies = [
  "bitwarden-core",
  "bitwarden-crypto",
  "bitwarden-error",
+ "bitwarden-generators",
  "bitwarden-ipc",
  "bitwarden-ssh",
  "bitwarden-vault",

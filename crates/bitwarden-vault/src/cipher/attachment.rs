@@ -46,7 +46,7 @@ pub struct AttachmentEncryptResult {
 
 pub struct AttachmentFile {
     pub cipher: Cipher,
-    pub attachment: Attachment,
+    pub attachment: AttachmentView,
 
     /// There are three different ways attachments are encrypted.
     /// 1. UserKey / OrgKey (Contents) - Legacy
@@ -195,7 +195,7 @@ mod tests {
 
     use crate::{
         cipher::cipher::{CipherRepromptType, CipherType},
-        Attachment, AttachmentFile, AttachmentFileView, AttachmentView, Cipher,
+        AttachmentFile, AttachmentFileView, AttachmentView, Cipher,
     };
 
     #[test]
@@ -271,13 +271,13 @@ mod tests {
         let user_key: SymmetricCryptoKey = "w2LO+nwV4oxwswVYCxlOfRUseXfvU03VzvKQHrqeklPgiMZrspUe6sOBToCnDn9Ay0tuCBn8ykVVRb7PWhub2Q==".to_string().try_into().unwrap();
         let key_store = create_test_crypto_with_user_key(user_key);
 
-        let attachment = Attachment {
+        let attachment = AttachmentView {
             id: None,
             url: None,
             size: Some("161".into()),
             size_name: Some("161 Bytes".into()),
-            file_name: Some("2.M3z1MOO9eBG9BWRTEUbPog==|jPw0By1AakHDfoaY8UOwOQ==|eP9/J1583OJpHsSM4ZnXZzdBHfqVTXnOXGlkkmAKSfA=".parse().unwrap()),
-            key: Some("2.r288/AOSPiaLFkW07EBGBw==|SAmnnCbOLFjX5lnURvoualOetQwuyPc54PAmHDTRrhT0gwO9ailna9U09q9bmBfI5XrjNNEsuXssgzNygRkezoVQvZQggZddOwHB6KQW5EQ=|erIMUJp8j+aTcmhdE50zEX+ipv/eR1sZ7EwULJm/6DY=".parse().unwrap())
+            file_name: Some("Test.txt".into()),
+            key: Some("2.r288/AOSPiaLFkW07EBGBw==|SAmnnCbOLFjX5lnURvoualOetQwuyPc54PAmHDTRrhT0gwO9ailna9U09q9bmBfI5XrjNNEsuXssgzNygRkezoVQvZQggZddOwHB6KQW5EQ=|erIMUJp8j+aTcmhdE50zEX+ipv/eR1sZ7EwULJm/6DY=".parse().unwrap()),
         };
 
         let cipher  = Cipher {
@@ -328,12 +328,12 @@ mod tests {
         let user_key: SymmetricCryptoKey = "w2LO+nwV4oxwswVYCxlOfRUseXfvU03VzvKQHrqeklPgiMZrspUe6sOBToCnDn9Ay0tuCBn8ykVVRb7PWhub2Q==".to_string().try_into().unwrap();
         let key_store = create_test_crypto_with_user_key(user_key);
 
-        let attachment = Attachment {
+        let attachment = AttachmentView {
             id: None,
             url: None,
             size: Some("161".into()),
             size_name: Some("161 Bytes".into()),
-            file_name: Some("2.qTJdrgQe+tLCHTlPHMJXLw==|0we9+uYJPEY3FU5SblX2hg==|+fL/wTF/WgpoV+BNzmsmi284O0QNdVBUYmfqqs0CG1E=".parse().unwrap()),
+            file_name: Some("Test.txt".into()),
             key: None,
         };
 

@@ -340,6 +340,7 @@ dependencies = [
  "bitwarden-api-identity",
  "bitwarden-crypto",
  "bitwarden-error",
+ "bitwarden-uuid",
  "chrono",
  "getrandom 0.2.16",
  "log",
@@ -353,7 +354,7 @@ dependencies = [
  "serde_json",
  "serde_qs",
  "serde_repr",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "tokio",
  "tsify-next",
  "uniffi",
@@ -392,7 +393,7 @@ dependencies = [
  "sha1",
  "sha2",
  "subtle",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "tsify-next",
  "typenum",
  "uniffi",
@@ -426,7 +427,7 @@ dependencies = [
  "quote",
  "serde",
  "syn",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "tsify-next",
  "wasm-bindgen",
 ]
@@ -448,7 +449,7 @@ dependencies = [
  "rand 0.8.5",
  "serde",
  "serde_json",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "tsify-next",
  "uniffi",
  "uuid",
@@ -474,7 +475,7 @@ dependencies = [
  "reqwest",
  "serde",
  "serde_json",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "uniffi",
  "uuid",
 ]
@@ -492,7 +493,7 @@ dependencies = [
  "schemars",
  "serde",
  "serde_json",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "tokio",
  "tsify-next",
  "uniffi",
@@ -508,7 +509,7 @@ dependencies = [
  "js-sys",
  "serde",
  "serde_json",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "tokio",
  "tsify-next",
  "wasm-bindgen",
@@ -526,7 +527,7 @@ dependencies = [
  "chrono",
  "serde",
  "serde_repr",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "uniffi",
  "uuid",
  "wasm-bindgen",
@@ -545,7 +546,7 @@ dependencies = [
  "schemars",
  "serde",
  "serde_json",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "tokio",
  "uuid",
  "validator",
@@ -566,7 +567,7 @@ dependencies = [
  "rsa",
  "serde",
  "ssh-key",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "tsify-next",
  "uniffi",
  "wasm-bindgen",
@@ -583,7 +584,7 @@ dependencies = [
  "log",
  "serde",
  "serde_json",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "tokio",
  "tsify-next",
  "wasm-bindgen",
@@ -613,9 +614,28 @@ dependencies = [
  "oslog",
  "rustls-platform-verifier",
  "schemars",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "uniffi",
  "uuid",
+]
+
+[[package]]
+name = "bitwarden-uuid"
+version = "1.0.0"
+dependencies = [
+ "bitwarden-uuid-macro",
+ "serde",
+ "serde_json",
+ "uuid",
+]
+
+[[package]]
+name = "bitwarden-uuid-macro"
+version = "1.0.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
@@ -638,7 +658,7 @@ dependencies = [
  "serde_repr",
  "sha1",
  "sha2",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
  "tokio",
  "tsify-next",
  "uniffi",

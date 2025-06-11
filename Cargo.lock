@@ -382,6 +382,7 @@ dependencies = [
  "uniffi",
  "uuid",
  "wasm-bindgen",
+ "wasm-bindgen-futures",
  "zeroize",
  "zxcvbn",
 ]

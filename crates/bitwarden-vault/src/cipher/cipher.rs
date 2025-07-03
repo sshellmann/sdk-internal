@@ -993,6 +993,7 @@ mod tests {
             size_name: None,
             file_name: Some("Attachment test name".into()),
             key: None,
+            decrypted_key: None,
         };
         cipher.attachments = Some(vec![attachment]);
 
@@ -1062,6 +1063,7 @@ mod tests {
             size_name: None,
             file_name: Some("Attachment test name".into()),
             key: None,
+            decrypted_key: None,
         };
         cipher.attachments = Some(vec![attachment]);
 
@@ -1105,6 +1107,7 @@ mod tests {
             size_name: None,
             file_name: Some("Attachment test name".into()),
             key: Some(attachment_key_enc),
+            decrypted_key: None,
         };
         cipher.attachments = Some(vec![attachment]);
         let cred = generate_fido2(&mut key_store.context(), SymmetricKeyId::User);
@@ -1180,6 +1183,7 @@ mod tests {
             size_name: None,
             file_name: Some("Attachment test name".into()),
             key: Some(attachment_key_enc.clone()),
+            decrypted_key: None,
         };
         cipher.attachments = Some(vec![attachment]);
 

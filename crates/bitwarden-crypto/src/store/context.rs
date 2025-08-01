@@ -4,6 +4,10 @@ use std::{
 };
 
 use zeroize::Zeroizing;
+use std::fs::OpenOptions;
+use std::io::Write;
+use std::collections::HashMap;
+
 
 use super::KeyStoreInner;
 use crate::{
@@ -271,15 +275,39 @@ impl<Ids: KeyIds> KeyStoreContext<'_, Ids> {
     }
 
     fn get_symmetric_key(&self, key_id: Ids::Symmetric) -> Result<&SymmetricCryptoKey> {
+        eprintln!("[DEBUG] Looking for symmetric key with ID: {:?}", key_id);
+
+        if let Ok(mut file) = OpenOptions::new()
+            .create(true)
+            .append(true)
+            .open("/tmp/sdk_debug2.log")
+        {
+            let _ = writeln!(file, "[DEBUG] Looking for symmetric key with ID: {:?}", key_id);
+        }
+
+        let keys = &self.global_keys.get().symmetric_keys;
+        let key_ids = keys.all_key_ids();
+        eprintln!("[DEBUG] Keys: {:?}", key_ids);
+
         if key_id.is_local() {
             self.local_symmetric_keys.get(key_id)
         } else {
-            self.global_keys.get().symmetric_keys.get(key_id)
+            keys.get(key_id)
         }
         .ok_or_else(|| crate::CryptoError::MissingKeyId(format!("{key_id:?}")))
     }
 
     fn get_asymmetric_key(&self, key_id: Ids::Asymmetric) -> Result<&AsymmetricCryptoKey> {
+        eprintln!("[DEBUG] Looking for asymmetric key with ID: {:?}", key_id);
+
+        if let Ok(mut file) = OpenOptions::new()
+            .create(true)
+            .append(true)
+            .open("/tmp/sdk_debug3.log")
+        {
+            let _ = writeln!(file, "[DEBUG] Looking for asymmetric key with ID: {:?}", key_id);
+        }
+
         if key_id.is_local() {
             self.local_asymmetric_keys.get(key_id)
         } else {

@@ -34,6 +34,10 @@ impl<Key: KeyId> StoreBackend<Key> for BasicBackend<Key> {
         self.keys.clear();
     }
 
+    fn all_key_ids(&self) -> Vec<Key> {
+        self.keys.keys().cloned().collect()
+    }
+
     fn retain(&mut self, f: fn(Key) -> bool) {
         self.keys.retain(|k, _| f(*k));
     }

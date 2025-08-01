@@ -298,12 +298,24 @@ pub async fn secrets_delete_post(
     }
 }
 
+use std::fs::OpenOptions;
+use std::io::Write;
+
 pub async fn secrets_get_by_ids_post(
     configuration: &configuration::Configuration,
     get_secrets_request_model: Option<models::GetSecretsRequestModel>,
 ) -> Result<models::BaseSecretResponseModelListResponseModel, Error<SecretsGetByIdsPostError>> {
-    let local_var_configuration = configuration;
+    eprintln!("[DEBUG] secrets_get_by_ids_post");
 
+    if let Ok(mut file) = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open("/tmp/sdk_debug.log")
+    {
+        let _ = writeln!(file, "[DEBUG] secrets_get_by_ids_post");
+    }
+
+    let local_var_configuration = configuration;
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!("{}/secrets/get-by-ids", local_var_configuration.base_path);

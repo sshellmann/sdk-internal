@@ -32,6 +32,8 @@ pub trait StoreBackend<Key: KeyId>: ZeroizeOnDrop + Send + Sync {
     /// Removes all keys from the store.
     fn clear(&mut self);
 
+    fn all_key_ids(&self) -> Vec<Key>;
+
     /// Retains only the elements specified by the predicate.
     /// In other words, remove all keys for which `f` returns false.
     fn retain(&mut self, f: fn(Key) -> bool);

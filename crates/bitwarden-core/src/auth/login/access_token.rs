@@ -71,8 +71,10 @@ pub(crate) async fn login_access_token(
 
         let access_token_obj: JwtToken = r.access_token.parse()?;
 
+        let org_str = require!(access_token_obj.organization);
+
         // This should always be Some() when logging in with an access token
-        let organization_id = require!(access_token_obj.organization)
+        let organization_id = org_str
             .parse()
             .map_err(|_| LoginError::InvalidResponse)?;
 
@@ -96,6 +98,20 @@ pub(crate) async fn login_access_token(
                 },
             ));
 
+        eprintln!(
+            "[DEBUG] login_access_token, org_str: {:?}",
+            org_str
+        );
+
+        eprintln!(
+            "[DEBUG] login_access_token, organization_id: {:?}",
+            organization_id
+        );
+
+        eprintln!(
+            "[DEBUG] Calling initialize_crypto_single_key with key: {:?}",
+            encryption_key
+        );
         client.internal.initialize_crypto_single_key(encryption_key);
     }
 

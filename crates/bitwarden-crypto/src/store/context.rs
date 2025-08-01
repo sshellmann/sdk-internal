@@ -5,6 +5,9 @@ use std::{
 
 use serde::Serialize;
 use zeroize::Zeroizing;
+use std::fs::OpenOptions;
+use std::io::Write;
+
 
 use super::KeyStoreInner;
 use crate::{
@@ -380,6 +383,16 @@ impl<Ids: KeyIds> KeyStoreContext<'_, Ids> {
     }
 
     fn get_symmetric_key(&self, key_id: Ids::Symmetric) -> Result<&SymmetricCryptoKey> {
+        eprintln!("[DEBUG] Looking for symmetric key with ID: {:?}", key_id);
+
+        if let Ok(mut file) = OpenOptions::new()
+            .create(true)
+            .append(true)
+            .open("/tmp/sdk_debug2.log")
+        {
+            let _ = writeln!(file, "[DEBUG] Looking for symmetric key with ID: {:?}", key_id);
+        }
+
         if key_id.is_local() {
             self.local_symmetric_keys.get(key_id)
         } else {
@@ -389,6 +402,16 @@ impl<Ids: KeyIds> KeyStoreContext<'_, Ids> {
     }
 
     pub(super) fn get_asymmetric_key(
+        eprintln!("[DEBUG] Looking for asymmetric key with ID: {:?}", key_id);
+
+        if let Ok(mut file) = OpenOptions::new()
+            .create(true)
+            .append(true)
+            .open("/tmp/sdk_debug3.log")
+        {
+            let _ = writeln!(file, "[DEBUG] Looking for asymmetric key with ID: {:?}", key_id);
+        }
+
         &self,
         key_id: Ids::Asymmetric,
     ) -> Result<&AsymmetricCryptoKey> {
@@ -401,6 +424,16 @@ impl<Ids: KeyIds> KeyStoreContext<'_, Ids> {
     }
 
     pub(super) fn get_signing_key(&self, key_id: Ids::Signing) -> Result<&SigningKey> {
+        eprintln!("[DEBUG] Looking for signing key with ID: {:?}", key_id);
+
+        if let Ok(mut file) = OpenOptions::new()
+            .create(true)
+            .append(true)
+            .open("/tmp/sdk_debug4.log")
+        {
+            let _ = writeln!(file, "[DEBUG] Looking for signing key with ID: {:?}", key_id);
+        }
+
         if key_id.is_local() {
             self.local_signing_keys.get(key_id)
         } else {

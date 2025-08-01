@@ -336,11 +336,24 @@ pub async fn secrets_delete_post(
     }
 }
 
+use std::fs::OpenOptions;
+use std::io::Write;
+
 pub async fn secrets_get_by_ids_post(
     configuration: &configuration::Configuration,
     get_secrets_request_model: Option<models::GetSecretsRequestModel>,
 ) -> Result<models::BaseSecretResponseModelListResponseModel, Error<SecretsGetByIdsPostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
+    eprintln!("[DEBUG] secrets_get_by_ids_post");
+
+    if let Ok(mut file) = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open("/tmp/sdk_debug.log")
+    {
+        let _ = writeln!(file, "[DEBUG] secrets_get_by_ids_post");
+    }
+
     let p_get_secrets_request_model = get_secrets_request_model;
 
     let uri_str = format!("{}/secrets/get-by-ids", configuration.base_path);
